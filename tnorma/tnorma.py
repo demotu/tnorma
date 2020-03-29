@@ -3,7 +3,7 @@
 import numpy as np
 
 __author__ = 'Marcos Duarte, https://github.com/demotu'
-__version__ = "0.0.1"
+__version__ = "0.0.3"
 __license__ = "MIT"
 
 
@@ -145,8 +145,8 @@ def tnorma(y, axis=0, step=1, k=3, smooth=0, mask=None, nan_at_ext='delete',
 
     Version history
     ---------------
-    '0.0.1':
-        First version
+    '0.0.3':
+        Docs
     """
 
     from scipy.interpolate import UnivariateSpline
