@@ -1,6 +1,6 @@
 # [tnorma](https://pypi.org/project/tnorma/)
 
-Temporal normalization (from 0 to 100% with step interval).
+A Python module for temporal normalization (from 0 to 100% with step interval).
 
 Temporal normalization (from 0 to 100% with step interval).  
 Temporal normalization is usually employed for the temporal alignment of data obtained from different trials with different duration (number of points). This code implements a procedure knwown as the normalization to percent cycle.
