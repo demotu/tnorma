@@ -1,5 +1,7 @@
 # [tnorma](https://pypi.org/project/tnorma/)
 
+[![DOI](https://zenodo.org/badge/251048661.svg)](https://zenodo.org/badge/latestdoi/251048661)
+
 Temporal normalization (from 0 to 100% with step interval).
 
 Temporal normalization is usually employed for the temporal alignment of data obtained from different trials with different duration (number of points). This code implements a procedure knwown as the normalization to percent cycle.
@@ -54,13 +56,15 @@ Here is a suggestion to cite this GitHub repository:
 And a possible BibTeX entry:
 
 ```tex
-@misc{Duarte2020,  
-    author = {Duarte, M.},
-    title = {tnorma: A Python module for temporal normalization (from 0 to 100% with step interval)},  
-    year = {2020},  
-    publisher = {GitHub},  
-    journal = {GitHub repository},  
-    howpublished = {\url{https://github.com/demotu/tnorma}}  
+@software{marcos_duarte_2021_4599136,
+  author       = {Marcos Duarte},
+  title        = {demotu/tnorma:},
+  month        = mar,
+  year         = 2021,
+  publisher    = {Zenodo},
+  version      = {v0.0.3},
+  doi          = {10.5281/zenodo.4599136},
+  url          = {https://doi.org/10.5281/zenodo.4599136}
 }
 ```
 
