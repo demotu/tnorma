@@ -51,14 +51,15 @@ conda install -c duartexyz tnorma
 
 Here is a suggestion to cite this GitHub repository:
 
-> Duarte, M. (2020) tnorma: A Python module for temporal normalization (from 0 to 100% with step interval), <https://github.com/demotu/tnorma>.
+> Marcos Duarte. (2021). tnorma: A Python module for temporal normalization (from 0 to 100% with step interval) (Version v0.0.3). Zenodo. http://doi.org/10.5281/zenodo.4599136
 
 And a possible BibTeX entry:
 
 ```tex
 @software{marcos_duarte_2021_4599136,
   author       = {Marcos Duarte},
-  title        = {demotu/tnorma:},
+  title        = {{tnorma: A Python module for temporal normalization 
+                   (from 0 to 100\% with step interval)}},
   month        = mar,
   year         = 2021,
   publisher    = {Zenodo},
