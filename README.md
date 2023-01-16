@@ -1,5 +1,6 @@
 # [tnorma](https://pypi.org/project/tnorma/)
 
+[![PyPI version](https://badge.fury.io/py/tnorma.svg)](https://badge.fury.io/py/tnorma)
 [![DOI](https://zenodo.org/badge/251048661.svg)](https://zenodo.org/badge/latestdoi/251048661)
 
 Temporal normalization (from 0 to 100% with step interval).
