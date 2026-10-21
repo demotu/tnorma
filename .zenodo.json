@@ -1,0 +1,20 @@
+{
+    "title": "tnorma: A Python module for temporal normalization (from 0 to 100% with step interval)",
+    "creators": [
+        {
+            "name": "Duarte, Marcos",
+            "orcid": "0000-0002-0344-7460",
+            "affiliation": "Federal University of ABC"
+        }
+    ],
+    "upload_type": "software",
+    "access_right": "open",
+    "license": "mit",
+    "keywords": [
+        "temporal normalization",
+        "time normalization",
+        "percent cycle",
+        "interpolation",
+        "biomechanics"
+    ]
+}
