@@ -3,7 +3,7 @@
 import numpy as np
 
 __author__ = 'Marcos Duarte, https://github.com/demotu'
-__version__ = "0.0.3"
+__version__ = "0.1.0"
 __license__ = "MIT"
 
 
@@ -12,7 +12,7 @@ def tnorma(y, axis=0, step=1, k=3, smooth=0, mask=None, nan_at_ext='delete',
     """Temporal normalization (from 0 to 100% with step interval).
     Temporal normalization is usually employed for the temporal alignment of
     data obtained from different trials with different duration (number of
-    points). This code implements a procedure knwown as the normalization to
+    points). This code implements a procedure known as the normalization to
     percent cycle.
 
     This code can perform simple linear interpolation passing through each
@@ -22,21 +22,22 @@ def tnorma(y, axis=0, step=1, k=3, smooth=0, mask=None, nan_at_ext='delete',
     NaNs and any value inputted as a mask parameter and that appears at the
     extremities might be removed or replaced by the first/last not-NaN value
     before the interpolation because this code does not perform extrapolation.
-    For a 2D array, the entire row with NaN or a mask value at the extermity
+    For a 2D array, the entire row with NaN or a mask value at the extremity
     might be removed because of alignment issues with the data from different
     columns. As result, if there is a column of only NaNs in the data, the
-    temporal normalization can't be performed (an empty NaNs and any value
-    inputted as a mask parameter and that appears in the middle of the data
-    (which may represent missing data) are ignored and the interpolation is
-    performed through these points.
+    temporal normalization can't be performed (empty arrays are returned).
+    NaNs and any value inputted as a mask parameter and that appears in the
+    middle of the data (which may represent missing data) are ignored and the
+    interpolation is performed through these points.
 
-    See this IPython notebook [2]_.
+    See this marimo notebook [2]_.
 
     Parameters
     ----------
     y : 1-D or 2-D array_like
-        Array of independent input data. Must be increasing.
-        If 2-D array, the data in each axis will be interpolated.
+        Array of data to be normalized.
+        If 2-D array, the data in each column (or row, see `axis`) will be
+        interpolated. `y` is not modified.
     axis : int, 0 or 1, optional (default = 0)
         Axis along which the interpolation is performed.
         0: data in each column are interpolated; 1: for row interpolation
@@ -73,7 +74,8 @@ def tnorma(y, axis=0, step=1, k=3, smooth=0, mask=None, nan_at_ext='delete',
     Returns
     -------
     yn : 1-D or 2-D array
-        Interpolated data (if axis == 0, column oriented for 2-D array).
+        Interpolated data, with the same orientation as `y` for a 2-D array
+        (columns if axis == 0, rows if axis == 1).
     tn : 1-D array
         New x values (from 0 to 100) for the interpolated data.
     inds : list
@@ -89,7 +91,7 @@ def tnorma(y, axis=0, step=1, k=3, smooth=0, mask=None, nan_at_ext='delete',
     References
     ----------
     .. [1] http://www.sciencedirect.com/science/article/pii/S0021929010005038
-    .. [2] https://github.com/demotu/psd2/blob/master/docs/tnorma.ipynb
+    .. [2] https://github.com/demotu/tnorma/blob/master/docs/tnorma_notebook.py
 
     See Also
     --------
@@ -119,22 +121,22 @@ def tnorma(y, axis=0, step=1, k=3, smooth=0, mask=None, nan_at_ext='delete',
     >>> # Deal with missing data (use NaN as mask)
     >>> x = np.linspace(-3, 3, 100)
     >>> y = np.exp(-x**2) + np.random.randn(100)/10
-    >>> y[:10] = np.NaN # first ten points are missing
-    >>> y[30: 41] = np.NaN # make other 10 missing points
+    >>> y[:10] = np.nan # first ten points are missing
+    >>> y[30: 41] = np.nan # make other 10 missing points
     >>> yn, tn, indie = tnorma(y, step=-50, k=3, smooth=1, show=True)
 
     >>> # Deal with missing data at the extremities replacing by first/last not-NaN
     >>> x = np.linspace(-3, 3, 100)
     >>> y = np.exp(-x**2) + np.random.randn(100)/10
-    >>> y[0:10] = np.NaN # first ten points are missing
-    >>> y[-10:] = np.NaN # last ten points are missing
+    >>> y[0:10] = np.nan # first ten points are missing
+    >>> y[-10:] = np.nan # last ten points are missing
     >>> yn, tn, indie = tnorma(y, step=-50, k=3, smooth=1, nan_at_ext='replace', show=True)
 
     >>> # Deal with missing data at the extremities replacing by first/last not-NaN
     >>> x = np.linspace(-3, 3, 100)
     >>> y = np.exp(-x**2) + np.random.randn(100)/10
-    >>> y[0:10] = np.NaN # first ten points are missing
-    >>> y[-10:] = np.NaN # last ten points are missing
+    >>> y[0:10] = np.nan # first ten points are missing
+    >>> y[-10:] = np.nan # last ten points are missing
     >>> yn, tn, indie = tnorma(y, step=-50, k=1, smooth=0, nan_at_ext='replace', show=True)
 
     >>> # Deal with 2-D array
@@ -145,20 +147,25 @@ def tnorma(y, axis=0, step=1, k=3, smooth=0, mask=None, nan_at_ext='delete',
 
     Version history
     ---------------
+    '0.1.0':
+        Compatibility with NumPy 2 (np.NaN was removed)
+        The input `y` is not modified; `mask` works with integer data and
+        with a list of values
+        For `axis` = 1, `yn` is row oriented (as `y`)
     '0.0.3':
         Docs
     """
 
     from scipy.interpolate import UnivariateSpline
 
-    y = np.asarray(y)
+    y = np.array(y, dtype=float)  # a copy: `y` is changed below
     if axis:
         y = y.T
     if y.ndim == 1:
         y = np.reshape(y, (-1, 1))
     # turn mask into NaN
     if mask is not None:
-        y[y == mask] = np.NaN
+        y[np.isin(y, mask)] = np.nan
 
     iini = 0
     iend = y.shape[0]-1
@@ -204,7 +211,7 @@ def tnorma(y, axis=0, step=1, k=3, smooth=0, mask=None, nan_at_ext='delete',
         tn = np.linspace(0, 100, int(np.round(100 / step + 1)))
     else:
         tn = np.linspace(0, 100, -step)
-    yn = np.empty([tn.size, y.shape[1]]) * np.NaN
+    yn = np.full([tn.size, y.shape[1]], np.nan)
     for col in np.arange(y.shape[1]):
         # ignore NaNs inside data for the interpolation
         ind = np.isfinite(y[:, col])
@@ -215,10 +222,10 @@ def tnorma(y, axis=0, step=1, k=3, smooth=0, mask=None, nan_at_ext='delete',
     if show:
         _plot(t, y, ax, tn, yn)
 
-    if axis:
-        y = y.T
     if yn.shape[1] == 1:
         yn = yn.flatten()
+    elif axis:
+        yn = yn.T
 
     return yn, tn, indie
 
@@ -234,7 +241,6 @@ def _plot(t, y, ax, tn, yn):
             _, ax = plt.subplots(1, 1, figsize=(8, 5))
 
         ax.set_prop_cycle('color', ['b', 'r', 'b', 'g', 'b', 'y', 'b', 'c', 'b', 'm'])
-        #ax.set_color_cycle(['b', 'r', 'b', 'g', 'b', 'y', 'b', 'c', 'b', 'm'])
         for col in np.arange(y.shape[1]):
             if y.shape[1] == 1:
                 ax.plot(t, y[:, col], 'o-', lw=1, label='Original data')
@@ -245,6 +251,6 @@ def _plot(t, y, ax, tn, yn):
                 ax.plot(tn, yn[:, col], '.-', lw=2, label='Col= %d' % col)
             ax.locator_params(axis='y', nbins=7)
             ax.legend(fontsize=12, loc='best', framealpha=.5, numpoints=1)
-        plt.xlabel('[%]')
+        ax.set_xlabel('[%]')
         plt.tight_layout()
         plt.show()
