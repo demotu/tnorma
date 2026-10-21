@@ -4,6 +4,7 @@
 #     "marimo",
 #     "matplotlib",
 #     "numpy",
+#     "pyversions",
 #     "scipy",
 #     "tnorma",
 # ]
@@ -75,10 +76,17 @@ def _():
     import marimo as mo
     import matplotlib.pyplot as plt
     import numpy as np
+    import pyversions
 
     from tnorma import tnorma
 
-    return mo, np, plt, tnorma
+    return mo, np, plt, pyversions, tnorma
+
+
+@app.cell
+def _(pyversions):
+    _info = pyversions.versions()
+    return
 
 
 @app.cell(hide_code=True)
