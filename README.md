@@ -73,17 +73,16 @@ uvx marimo edit --sandbox docs/tnorma_notebook.py
 
 Here is a suggestion to cite this software, with its concept DOI, which always resolves to the latest version (to cite a specific version, use its DOI listed on [Zenodo](https://doi.org/10.5281/zenodo.4599135)):
 
-> Marcos Duarte. (2026). tnorma: A Python module for temporal normalization (from 0 to 100% with step interval) (v0.1.0). Zenodo. https://doi.org/10.5281/zenodo.4599135
+> Marcos Duarte. (2021). tnorma: A Python module for temporal normalization (from 0 to 100% with step interval). Zenodo. https://doi.org/10.5281/zenodo.4599135
 
 And a possible BibTeX entry:
 
 ```tex
 @software{duarte_tnorma,
-  author       = {Duarte, Marcos},
+  author       = {Marcos Duarte},
   title        = {{tnorma: A Python module for temporal normalization (from 0 to 100\% with step interval)}},
-  year         = 2026,
+  year         = 2021,
   publisher    = {Zenodo},
-  version      = {v0.1.0},
   doi          = {10.5281/zenodo.4599135},
   url          = {https://doi.org/10.5281/zenodo.4599135}
 }
