@@ -6,3 +6,8 @@ dist/
 .ipynb_checkpoints/
 .pytest_cache/
 .venv/
+_site/
+**/__marimo__/
+.ruff_cache/
+.superpowers/
+/docs/superpowers/

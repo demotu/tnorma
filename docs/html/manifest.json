@@ -1,0 +1,14 @@
+{
+  "exporter": "marimo export html",
+  "notebooks": [
+    {
+      "source": "docs/tnorma_notebook.py",
+      "source_sha256": "cbb908c95470eea8b721948b7b7791663c93733d807332df5cbb4a33e429e237",
+      "shared_inputs_sha256": "967c218e40bface84f299df5e176f17e5f6074bdd3de5017fa214e2086fc7184",
+      "html": "tnorma_notebook.html",
+      "html_sha256": "f1647126cd744c932ae7dbd25f01d6a5235941d19bcaef309944341bc232a98f",
+      "cells": 30,
+      "cells_with_saved_figures": 9
+    }
+  ]
+}

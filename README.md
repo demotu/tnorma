@@ -55,19 +55,17 @@ conda install -c duartexyz tnorma
 >>> yn, tn, indie = tnorma(y, step=-50, k=3, smooth=1, show=True)
 ```
 
-More examples are in a [marimo](https://marimo.io) notebook in the [docs](https://github.com/demotu/tnorma/tree/master/docs) directory. Run it in your browser, no installation needed:
+More examples are in a [marimo](https://marimo.io) notebook:
 
-| Notebook | molab | marimo.app |
-|---|---|---|
-| [tnorma](https://molab.marimo.io/github/demotu/tnorma/blob/master/docs/tnorma_notebook.py) | [![Open in molab](https://marimo.io/molab-shield.svg)](https://molab.marimo.io/github/demotu/tnorma/blob/master/docs/tnorma_notebook.py/wasm) | [![Open with marimo](https://marimo.io/shield.svg)](https://marimo.app/github.com/demotu/tnorma/blob/master/docs/tnorma_notebook.py) |
-
-The notebook name links to a static preview with the outputs; the badges run the notebook in your browser with [WebAssembly](https://docs.marimo.io/guides/wasm/).
+- [Edit and run tnorma in your browser](https://demotu.github.io/tnorma/tnorma_notebook.html), no installation needed. Alternative services: [![Open in molab](https://marimo.io/molab-shield.svg)](https://molab.marimo.io/github/demotu/tnorma/blob/master/docs/tnorma_notebook.py) [![Open with marimo](https://marimo.io/shield.svg)](https://marimo.app/github.com/demotu/tnorma/blob/master/docs/tnorma_notebook.py). [Read saved text and plots](https://demotu.github.io/tnorma/docs/html/) without running the notebook.
 
 Or run it locally:
 
 ```bash
 uvx marimo edit --sandbox docs/tnorma_notebook.py
 ```
+
+See [scripts/README.md](scripts/README.md) for updating saved outputs and previewing the published notebooks locally.
 
 ## How to cite this work
 
